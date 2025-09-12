@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Unity.Cinemachine;
 using Unity.Mathematics;
 using UnityEngine;
@@ -63,7 +64,14 @@ public class PlayerMovement : MonoBehaviour
         var autodolly = dollyCart.AutomaticDolly.Method as SplineAutoDolly.FixedSpeed;
         autodolly.Speed = z;
     }
+    public void QuickSpin(int dir)
+    {
+        if(!DOTween.IsTweening(model))
+        {
+            model.DOLocalRotate(new Vector3(model.localEulerAngles.x, model.localEulerAngles.y, 360 * dir), .4f, RotateMode.LocalAxisAdd).SetEase(Ease.Linear);
 
+        }
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
