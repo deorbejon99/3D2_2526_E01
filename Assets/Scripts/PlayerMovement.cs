@@ -72,6 +72,15 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
+
+    public void Boost(bool state)
+    {
+        float speed = state ? forwardSpeed * 2 : forwardSpeed;
+
+        DOVirtual.Float(forwardSpeed, speed, .15f, SetSpeed);
+    }
+
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
