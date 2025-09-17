@@ -2,15 +2,25 @@ using DG.Tweening;
 using Unity.Cinemachine;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public InputSystem_Actions inputActions ;
     public float xyspeed = 10;
     public float forwardSpeed = 1f;
     public float lookSpeed ;
     public GameObject aimObject;
     public Transform model;
     public CinemachineSplineCart dollyCart;
+    public AudioSource audioSource;
+    public TrailRenderer leftTrail, rightTrail;
+
+
+    private void Awake()
+    {
+        inputActions = new InputSystem_Actions();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,6 +40,29 @@ public class PlayerMovement : MonoBehaviour
         HorizontalLean(model, h, 110, .1f);
 
        
+    }
+
+    private void OnEnable()
+    {
+        inputActions.Player.Boost.performed += OnBoostPressed;
+        inputActions.Player.Boost.canceled += OnBoostReleased;
+        inputActions.Enable();
+    }
+    private void OnDisable()
+    {
+        inputActions.Player.Boost.performed -= OnBoostPressed;
+        inputActions.Player.Boost.canceled -= OnBoostReleased;
+        inputActions.Disable();
+    }
+
+    void OnBoostPressed(InputAction.CallbackContext context)
+    {
+        Boost(true);
+    }
+
+    void OnBoostReleased(InputAction.CallbackContext context)
+    {
+        Boost(false);
     }
 
     void LocalMove(float x, float y, float speed)
@@ -73,9 +106,27 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
     public void Boost(bool state)
     {
-        float speed = state ? forwardSpeed * 2 : forwardSpeed;
+
+        if (state)
+        {
+            audioSource.Play();
+
+        }
+        else
+        {
+            audioSource.Stop();
+        }
+
+        leftTrail.emitting = state;
+        rightTrail.emitting = state;
+
+
+
+
+            float speed = state ? forwardSpeed * 2 : forwardSpeed;
 
         DOVirtual.Float(forwardSpeed, speed, .15f, SetSpeed);
     }
