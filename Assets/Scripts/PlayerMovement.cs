@@ -8,6 +8,7 @@ using UnityEngine.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public bool Joystick;
     public InputSystem_Actions inputActions ;
     public float xyspeed = 10;
     public float forwardSpeed = 1f;
@@ -35,8 +36,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float h = Input.GetAxis("Mouse X");
-        float v = Input.GetAxis("Mouse Y");
+        float h = Joystick ? Input.GetAxis("Horizontal") : Input.GetAxis ("Mouse X");
+        float v = Joystick ? Input.GetAxis("Vertical") : Input.GetAxis("Mouse Y");
 
         LocalMove(h, v, xyspeed);
         ClampPosition();

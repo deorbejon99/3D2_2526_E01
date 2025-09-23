@@ -294,6 +294,17 @@
                 },
                 {
                     "name": "",
+                    "id": "db847d16-7ee1-4a18-bc32-8445fc816a47",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "cbac6039-9c09-46a1-b5f2-4e5124ccb5ed",
                     "path": "<Keyboard>/2",
                     "interactions": "",
@@ -459,6 +470,17 @@
                 },
                 {
                     "name": "",
+                    "id": "7ab14a8c-ba16-4fe3-a35a-a3e6f5a12684",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RollLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "81560daf-e28f-4b17-8ede-f77d77c11698",
                     "path": "<Keyboard>/e",
                     "interactions": "",
@@ -470,8 +492,30 @@
                 },
                 {
                     "name": "",
+                    "id": "1fbd49f8-92b3-42bf-a3de-972ca74af15f",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RollRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "29b93c1d-6e18-49ea-b281-a6a84d9e96d8",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Boost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47b67f78-cf78-4192-9290-5124c71fd18a",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
