@@ -5,16 +5,19 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public int vidaMaxima = 3;
+    public int vidaMaxima;
     public int vida;
     public bool Joystick;
     public InputSystem_Actions inputActions;
     public float xyspeed = 10;
     public float forwardSpeed = 1f;
     public float lookSpeed;
+    public Image rellenoBarraVida;
+    public int SubirVida;
 
     public GameObject cameraHolder;
     public GameObject aimObject;
@@ -131,6 +134,14 @@ public class PlayerMovement : MonoBehaviour
         DOVirtual.Float(forwardSpeed, speed, .15f, SetSpeed);
         DOVirtual.Float(originFOV, endFOV, .5f, FieldOfView);
         SetCameraZoom(zoom, .4f);
+    }
+
+    void OnTriggerEnter (Collider coli)
+    {
+        if (coli.gameObject.CompareTag("vida"))
+        {
+            rellenoBarraVida.fillAmount = vida + SubirVida;
+        }
     }
 
     void Chromatic(float x)
