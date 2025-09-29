@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -24,5 +25,15 @@ public class ScoreManager : MonoBehaviour
     {
         puntos++;
         textoPuntos.text = $"Score: {puntos}";
+
+        if (puntos >= 10)
+        {
+            CargarEscenaWin();
+        }
+    }
+
+    void CargarEscenaWin()
+    {
+        SceneManager.LoadScene("win"); // <-- Carga directamente la escena llamada "win"
     }
 }
