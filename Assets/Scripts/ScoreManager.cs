@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instancia;
-
     public int puntos = 0;
     public TextMeshProUGUI textoPuntos;
 
@@ -34,7 +33,15 @@ public class ScoreManager : MonoBehaviour
 
     void CargarEscenaWin()
     {
-        Debug.Log("winwinwin");
-        SceneManager.LoadScene("win"); // <-- Carga directamente la escena llamada "win"
+        Debug.Log("ScoreManager: vamos a win");
+
+        // Desactivar cualquier LoadSceneOnDestroy que no sea Player
+        foreach (var loader in FindObjectsOfType<LoadSceneOnDestroy>())
+        {
+            if (!loader.isPlayer) loader.enabled = false;
+        }
+
+        // Cargar la escena win
+        SceneManager.LoadScene("win");
     }
 }

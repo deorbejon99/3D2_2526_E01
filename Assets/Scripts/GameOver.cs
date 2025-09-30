@@ -3,20 +3,25 @@ using UnityEngine.SceneManagement;
 
 public class LoadSceneOnDestroy : MonoBehaviour
 {
-    [Tooltip("Nombre de la escena a cargar cuando este objeto sea destruido.")]
     public string sceneToLoad;
+    public bool isPlayer = false; // Solo Player puede cargar escena
+
+    private static bool sceneAlreadyLoaded = false; // Evita conflictos
 
     private void OnDestroy()
     {
-        // Verifica que se haya especificado una escena válida
-        if (!string.IsNullOrEmpty(sceneToLoad))
-        {
-            // Carga la escena
-            SceneManager.LoadScene(sceneToLoad);
-        }
-        else
-        {
-            Debug.LogWarning("No se ha especificado el nombre de la escena a cargar.");
-        }
+        if (!isPlayer) return; // Solo carga Player
+        if (sceneAlreadyLoaded) return; // Evita que otros componentes interfieran
+        if (string.IsNullOrEmpty(sceneToLoad)) return;
+
+        sceneAlreadyLoaded = true;
+
+        // Retrasar la carga de la escena un frame para evitar interferencias
+        Invoke(nameof(LoadSceneDelayed), 0.01f);
+    }
+
+    private void LoadSceneDelayed()
+    {
+        SceneManager.LoadScene(sceneToLoad);
     }
 }
