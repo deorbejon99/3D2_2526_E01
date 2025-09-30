@@ -34,6 +34,7 @@ public class ScoreManager : MonoBehaviour
 
     void CargarEscenaWin()
     {
+        Debug.Log("winwinwin");
         SceneManager.LoadScene("win"); // <-- Carga directamente la escena llamada "win"
     }
 }
