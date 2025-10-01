@@ -25,7 +25,7 @@ public class ScoreManager : MonoBehaviour
         puntos++;
         textoPuntos.text = $"Score: {puntos}";
 
-        if (puntos >= 10)
+        if (puntos >= 12)
         {
             CargarEscenaWin();
         }
